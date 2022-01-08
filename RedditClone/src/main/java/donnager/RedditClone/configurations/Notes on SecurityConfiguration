@@ -1,0 +1,26 @@
+SecurityConfiguration and webConfiguration classes
+are responsible to enable the application to connect
+to H2 Database even though Spring Security by default
+doesn't allow it to connect.
+
+.csrf():
+.disable():
+
+.authorizeRequests():
+                     Allows restricting access based upon the HttpServletRequest
+                     using RequestMatcher implementations
+.antMatchers:
+              Allows configuring the HttpSecurity to only
+              be invoked when matching the provided ant pattern.
+.permitAll()
+.anyRequest()
+.authenticated();
+.headers():
+           Adds the Security headers to the response.
+           This is activated by default when using
+           WebSecurityConfigurerAdapter's default constructor.
+
+
+PassWordEncoder:
+                Service interface for encoding passwords.
+                The preferred implementation is BCryptPasswordEncoder.

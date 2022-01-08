@@ -1,0 +1,38 @@
+@Email:
+       javax.validation.constraints.Email;
+       Validates that the annotated property is a valid email address.
+@NotBlank:
+          javax.validation.constraints.NotBlank;
+          Can only be applied to text values and validates that the
+          property is not null or whitespace.
+@NotEmpty:
+          javax.validation.constraints.NotEmpty;
+          Validates that the property is not null or empty.
+          Can be applied to String, Collection, Map or Array values.
+Instant:
+        Instant class is used to represent the specific moment on the
+        time line. It inherits the Object class and implements the
+        Comparable interface.
+@Nullable:
+          A common Spring annotation to declare that annotated elements
+          can be null under some circumstance.
+@Lob:
+     It is used to specify that the currently annotated entity attribute
+     represents a large object type.
+@Builder:
+         Produces complex builder APIs for classes.
+         It lets you automatically produce the code required to have
+         your class be instantiable.
+@Async:
+       The method annotated with @Async will make it execute
+       in a separate thread. In other words, the caller will not wait for
+       the completion of the called method.
+@Slf4j:
+
+@Transactional:
+               It is simply a metadata that can be consumed by some
+               runtime infrastructure. This infrastructure uses the metadata
+               to configure the appropriate beans with transactional behaviour.
+@EnableAsync:
+
+@EnableWebSecurity

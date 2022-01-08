@@ -1,0 +1,142 @@
+package donnager.RedditClone.configurations;
+
+/*
+   Entity "User" needs to be annotated with @Builder so that
+   the code below works out.
+*/
+/*
+   Donnager os the name of the artifact.
+*/
+
+
+import donnager.RedditClone.model.User;
+import donnager.RedditClone.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+
+@Configuration
+public class Configuration  {
+
+    private final UserRepo userRepo;
+
+    public Configuration(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
+
+    @Bean(name = "Leo")
+    public CommandLineRunner runner() {
+        return args -> {
+            User leo = User
+                    .builder()
+                    .username("Leonardo")
+                    .email("leo@gmail.com")
+                    .password("123456789")
+                    .build();
+            userRepo.save(leo);
+
+        };
+    }
+
+    @Bean(name = "Natan")
+    public CommandLineRunner runner2() {
+        return args -> {
+            User natan = User
+                    .builder()
+                    .username("Natan")
+                    .email("natan@gmail.com")
+                    .password("123456789")
+                    .build();
+            userRepo.save(natan);
+        };
+    }
+
+
+    @Bean(name = "Mark")
+    public CommandLineRunner runner3() {
+        return args -> {
+            User mark = User
+                    .builder()
+                    .username("Mark")
+                    .email("mark@gmail.com")
+                    .password("123456789")
+                    .build();
+            userRepo.save(mark);
+        };
+    }
+
+    @Bean
+    CommandLineRunner commandLineRunner() {
+        return args -> {
+            User maria = new User(4L, "Maria", "123456789", "maria@gmail.com", null,false);
+            User michael = new User(5L, "Michael", "123456789", "michael@gmail.com", null, false);
+            userRepo.saveAll(List.of(maria, michael));
+        };
+    }
+}
+
+
+/*
+   This is another way to populate a data base with
+   default users by using @Builder annotation.
+   The Entity needs to be annotated as followed: @Builder(toBuilder = true)
+*/
+
+package home.api.backendapispring.configurations;
+
+import home.api.backendapispring.model.Person;
+import home.api.backendapispring.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+
+@Configuration
+public class PersonConfiguration {
+
+    @Bean
+    CommandLineRunner commandLineRunner(@Autowired PersonRepository repository) {
+        return args -> {
+
+            Person testPerson = Person
+                    .builder()
+                    .id(1L)
+                    .name("Natan")
+                    .surname("Alves")
+                    .age(25)
+                    .email("natan@gmail.com")
+                    .build();
+
+
+            Person.PersonBuilder personBuilder = testPerson.toBuilder();
+            Person newPerson = personBuilder
+                    .name("Marco")
+                    .id(2L).surname("Inaros")
+                    .age(40).email("marco@gmail.com")
+                    .build();
+
+
+            Person.PersonBuilder personBuilder1 = testPerson.toBuilder();
+            Person newPerson1 = personBuilder1
+                    .name("Naomi")
+                    .id(3L)
+                    .surname("Nagata")
+                    .age(35)
+                    .email("naomi@gmail.com")
+                    .build();
+
+
+            repository.saveAll(List.of(testPerson, newPerson, newPerson1));
+
+
+        };
+    }
+
+}
+
