@@ -2,6 +2,8 @@
 Reddit Clone
 
 This application is a full clone of Reddit using the following technologies:
+
+
 JAVA
 SPRING BOOT
 SPRING DATA
